@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+        <entry key="viewMenuOfStore">
+                select
+                        b.menu_name,
+                        b.menu_price
+                        from 매장 a
+                        join 메뉴 b on a.store_code = b.store_code
+                        where store_name = ?;
+        </entry>
+        <entry key="userDistinction">
+                select
+                        distinction
+                        from 사용자
+                        where user_name = ?;
+        </entry>
+        <entry key="userRegistration">
+                insert into 사용자
+                (user_code, user_name, phone, user_address, distinction)
+                values
+                (null,?,?,?,?);
+        </entry>
+</properties>
