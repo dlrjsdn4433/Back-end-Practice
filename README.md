@@ -5,7 +5,7 @@
 <h2>2. 논리 모델</h2>
 <img width="585" height="535" alt="Image" src="https://github.com/user-attachments/assets/929526df-3609-4f9d-bab6-f86784986ee0" />
 <h2>3. 물리 모델</h2>
-<img width="772" height="530" alt="Image" src="https://github.com/user-attachments/assets/36bd6d1d-99f1-425a-8bc3-85b5d86ffe77" />
+<img width="787" height="545" alt="Image" src="https://github.com/user-attachments/assets/e950bc55-77b9-40a7-83af-0ee563fcd552" />
 <h2>4. SQL 스크립트파일</h2>
 <pre>drop table if exists `리뷰`;
 drop table if exists `매장`;
