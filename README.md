@@ -3,7 +3,7 @@
 <h2>1. 기획</h2>
 <p>배달연결 프로그램을 구현하여 사용자를 매장 사장과 주문자로 구별하여 매장등록, 메뉴 등록, 주문, 리뷰 작성 등의 행동을 할 수 있게 한다.</p>
 <h2>2. 논리 모델</h2>
-<img width="714" height="478" alt="Image" src="https://github.com/user-attachments/assets/6ce8ecc0-23a0-406f-a080-7ba0146e6c54" />
+<img width="585" height="535" alt="Image" src="https://github.com/user-attachments/assets/929526df-3609-4f9d-bab6-f86784986ee0" />
 <h2>3. 물리 모델</h2>
 <img width="772" height="530" alt="Image" src="https://github.com/user-attachments/assets/36bd6d1d-99f1-425a-8bc3-85b5d86ffe77" />
 <h2>4. SQL 스크립트파일</h2>
