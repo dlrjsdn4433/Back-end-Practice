@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- 사장 관련 쿼리 xml
+        1. 매장 등록
+        2. 매장명 수정
+        3. 매장 삭제
+        4. 메뉴 등록
+        5. 메뉴 이름 수정
+        6. 메뉴 가격 수정
+        7. 메뉴 삭제
+        8. 리뷰 조회-->
+
+    <entry key="registStore">
+        insert into 매장 (store_code, store_name, user_code)values(null,?,?);
+    </entry>
+    <entry key="modifyStoreName">
+        update 매장
+                set store_name = ?
+                where store_name = ?
+                  and user_code = ?;
+    </entry>
+    <entry key="deleteStore">
+        delete from 매장
+                where store_name = ?
+                  and user_code = ?;
+    </entry>
+    <entry key="registMenu">
+        insert into 메뉴 (store_code, menu_name, menu_price, cooking_time, orderable_status)
+        values((select
+                    store_code
+                    from 매장
+                    where user_code = ?)
+        ,?,?,?,?)
+    </entry>
+    <entry key="modifyMenuName">
+        update 메뉴
+                set menu_name = ?
+                where menu_name = ?
+                  and user_code = ?;
+    </entry>
+    <entry key="modifyMenuPrice">
+        update 메뉴
+                set menu_price = ?
+                where menu_name = ?
+                  and user_code = ?;
+    </entry>
+    <entry key="deleteMenu">
+        delete from 메뉴
+                where menu_name = ?
+                  and user_code = ?
+    </entry>
+    <entry key="ViewReview">
+        select * from 리뷰
+                where store_code = (select
+                                            store_code
+                                            from 매장
+                                            where user_code = ?);
+
+    </entry>
+</properties>

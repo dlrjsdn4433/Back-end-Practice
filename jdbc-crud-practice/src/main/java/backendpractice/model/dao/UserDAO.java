@@ -1,9 +1,5 @@
 package backendpractice.model.dao;
 
-
-import backendpractice.model.dto.StoreDTO;
-import backendpractice.model.dto.UserDTO;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,12 +12,14 @@ import java.util.Scanner;
 import static backendpractice.common.JDBCTemplate.close;
 import static backendpractice.common.JDBCTemplate.getConnection;
 
-public class MenuDAO {
 
+
+public class UserDAO {
     private Properties prop = new Properties();
+    Scanner sc = new Scanner(System.in);
     private int userCode;
 
-    public MenuDAO(){
+    public UserDAO(){
         try {
             prop.loadFromXML(new FileInputStream("src/main/java/backendpractice/mapper/baedaldb-query.xml"));
         } catch (IOException e) {
@@ -35,36 +33,6 @@ public class MenuDAO {
 
     public void setUserCode(int userCode) {
         this.userCode = userCode;
-    }
-
-    // 매장이름 입력하면 메뉴 조회되는 메소드
-    public void viewMenuOfStore(Connection con){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("매장 이름을 입력하시면 메뉴 목록을 보여드립니다.");
-        System.out.print("매장 이름을 입력해주세요 : ");
-        String store = sc.nextLine();
-
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-
-        String query = prop.getProperty("viewMenuOfStore");
-
-        try {
-            pstmt = con.prepareStatement(query);
-            pstmt.setString(1,store);
-            rset = pstmt.executeQuery();
-            while(rset.next()){
-                System.out.print(rset.getString("b.menu_name") + " : ");
-                System.out.println(rset.getString("b.menu_price"));
-
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-            close(rset);
-        }
     }
 
     // 1. 사용자 등록(회원가입 후 사용자 구분 사장인지 주문자인지)
@@ -101,84 +69,6 @@ public class MenuDAO {
             throw new RuntimeException(e);
         } finally {
             close(pstmt);
-        }
-    }
-
-
-    // 전체 매장 조회
-    public void viewAllStore(Connection con){
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        String query = prop.getProperty("viewAllStore");
-
-        try {
-            pstmt = con.prepareStatement(query);
-            rset = pstmt.executeQuery();
-            while(rset.next()){
-                Properties p = new Properties();
-                p.setProperty(rset.getString("store_name"),rset.getString("user_name"));
-                System.out.println("p = " + p);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-            close(rset);
-        }
-    }
-
-    // 메뉴명으로 조회
-    public void viewMenu(Connection con) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("조회하실 메뉴 명을 입력해주세요 : ");
-        String menuName = sc.nextLine();
-
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-
-        String query = prop.getProperty("viewMenu");
-        try {
-            pstmt = con.prepareStatement(query);
-            pstmt.setString(1,menuName);
-            rset = pstmt.executeQuery();
-
-            if(rset.next()){
-                System.out.println("메뉴명 : " + menuName);
-                System.out.println("매장명 : " + rset.getString("b.store_name"));
-                System.out.println("메뉴 가격 : " + rset.getInt("a.menu_price"));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-            close(pstmt);
-            close(rset);
-        }
-
-    }
-    // 메뉴 삭제
-    public void deleteMenu(Connection con) {
-        PreparedStatement pstmt = null;
-        int result = 0;
-        String query = prop.getProperty("deleteMenu");
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("삭제하실 메뉴명을 입력해주세요 : ");
-        String delMenu = sc.nextLine();
-
-        try {
-            pstmt = con.prepareStatement(query);
-            pstmt.setString(1,delMenu);
-            result = pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-            close(pstmt);
-        }
-        if(result>0){
-            System.out.println("메뉴 삭제 완료");
-        } else {
-            System.out.println("메뉴 삭제 실패");
         }
     }
 
@@ -244,5 +134,33 @@ public class MenuDAO {
             close(rset);
         }
         return result;
+    }
+
+    public void owner(){
+        while(true){
+            System.out.println("=======사장 메뉴=======");
+            System.out.println("1. 매장 등록");
+            System.out.println("2. 매장 삭제");
+            System.out.println("3. 메뉴 추가");
+            System.out.println("4. 메뉴 삭제");
+            System.out.println("5. 메뉴 수정");
+            System.out.println("6. 리뷰 보기");
+            System.out.println("9. 프로그램 종료");
+
+            System.out.print("메뉴 선택 : ");
+            int choice = sc.nextInt();
+
+            switch(choice){
+                case 1 :
+                case 2 :
+                case 3 :
+                case 4 :
+                case 5 :
+                case 6 :
+                case 9 : break;
+            }
+
+
+        }
     }
 }
