@@ -3,17 +3,20 @@ package backendpractice.model.dto;
 public class MenuDTO {
 
     private String name;
+    private int price;
     private int time;
     private String orderableStatus;
     private int storeCode;
 
+
     public MenuDTO () {}
 
-    public MenuDTO(String name, int time, String orderableStatus, int storeCode) {
+    public MenuDTO(String name, int time, String orderableStatus, int storeCode, int price) {
         this.name = name;
         this.time = time;
         this.orderableStatus = orderableStatus;
         this.storeCode = storeCode;
+        this.price = price;
     }
 
     public String getName() {
@@ -48,13 +51,22 @@ public class MenuDTO {
         this.storeCode = storeCode;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "MenuDTO{" +
                 "name='" + name + '\'' +
+                ", price=" + price +
                 ", time=" + time +
                 ", orderableStatus='" + orderableStatus + '\'' +
-                ", storeCode=" + storeCode +
                 '}';
     }
 }
+

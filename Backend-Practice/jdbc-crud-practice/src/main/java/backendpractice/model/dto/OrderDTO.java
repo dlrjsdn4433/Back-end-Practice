@@ -5,13 +5,13 @@ public class OrderDTO {
     private int orderCode;
     private int time;
     private int userCode;
-    private int menuName;
+    private String menuName;
     private int amount;
     private int storeCode;
 
     public OrderDTO (){}
 
-    public OrderDTO(int ordercode, int time, int userCode, int menuName, int amount, int storeCode) {
+    public OrderDTO(int ordercode, int time, int userCode,String menuName, int amount, int storeCode) {
         this.orderCode = ordercode;
         this.time = time;
         this.userCode = userCode;
@@ -44,11 +44,11 @@ public class OrderDTO {
         this.userCode = userCode;
     }
 
-    public int getMenuName() {
+    public String getMenuName() {
         return menuName;
     }
 
-    public void setMenuName(int menuName) {
+    public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
 

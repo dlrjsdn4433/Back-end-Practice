@@ -2,29 +2,30 @@ package backendpractice.model.dto;
 
 public class ReviewDTO {
 
-    private int reviewCode;
+    private int orderCode;
     private int userCode;
     private String review;
     private int storeCode;
+    private String storeName;
 
     public ReviewDTO(){}
 
-    public ReviewDTO(int reviewCode, int userCode, String review, int storeCode) {
-        this.reviewCode = reviewCode;
+    public ReviewDTO(int orderCode, int userCode, String review, int storeCode) {
+        this.orderCode = orderCode;
         this.userCode = userCode;
         this.review = review;
         this.storeCode = storeCode;
     }
 
     public int getReviewCode() {
-        return reviewCode;
+        return orderCode;
     }
 
-    public void setReviewCode(int reviewCode) {
-        this.reviewCode = reviewCode;
+    public void setOrderCode(int reviewCode) {
+        this.orderCode = reviewCode;
     }
 
-    public int getUserCode() {
+    public int getOrdererCode() {
         return userCode;
     }
 
@@ -48,13 +49,20 @@ public class ReviewDTO {
         this.storeCode = storeCode;
     }
 
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
     @Override
     public String toString() {
         return "ReviewDTO{" +
-                "reviewCode=" + reviewCode +
+                "storeName='" + storeName + '\'' +
                 ", userCode=" + userCode +
                 ", review='" + review + '\'' +
-                ", storeCode=" + storeCode +
                 '}';
     }
 }

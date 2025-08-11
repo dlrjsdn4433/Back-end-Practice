@@ -48,7 +48,7 @@
         <entry key="login">
                 select
                         user_code
-                        from 사용자
+                        from user
                         where user_id = ?
                           and user_pwd = ?;
         </entry>
@@ -57,7 +57,7 @@
                 select
                 distinction,
                 user_name
-                from 사용자
+                from user
                 where user_code = ?;
         </entry>
 </properties>

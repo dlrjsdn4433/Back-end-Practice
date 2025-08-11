@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- 사장 관련 쿼리 xml
+        1. 매장 등록
+        2. 매장명 수정
+        3. 매장 삭제
+        4. 메뉴 등록
+        5. 메뉴 이름 수정
+        6. 메뉴 가격 수정
+        7. 메뉴 삭제
+        8. 리뷰 조회-->
+
+    <entry key="registStore">
+        insert into store (store_name, user_code)values(?,?);
+    </entry>
+    <entry key="modifyStoreName">
+        update store
+                set store_name = ?
+                where store_name = ?
+                  and user_code = ?;
+    </entry>
+    <entry key="deleteStore">
+        delete from store
+                where store_name = ?
+                  and user_code = ?;
+    </entry>
+    <entry key="registMenu">
+        insert into menu (store_code, menu_name, menu_price, cooking_time)
+        values((select
+                    store_code
+                    from store
+                    where store_name = ?
+                      and user_code = ?)
+        ,?,?,?)
+    </entry>
+    <entry key="modifyMenuName">
+        update menu
+                set menu_name = ?
+                where menu_name = ?
+                  and (select store_code
+                                from store
+                                where user_code = ?
+                                  and store_name = ?);
+    </entry>
+    <entry key="modifyMenuPrice">
+        update menu
+                set menu_price = ?
+                where menu_name = ?
+                  and (select store_code
+                                  from store
+                                  where user_code = ?
+                                  and store_name = ?)
+    </entry>
+    <entry key="deleteMenu">
+        delete from menu
+                where menu_name = ?
+                and (select store_code
+                from store
+                where user_code = ?
+                and store_name = ?)
+    </entry>
+    <entry key="viewReview">
+        select
+                a.order_code,
+                b.store_name,
+                a.review
+                from review a
+                join store b on b.store_code = a.store_code
+                where b.store_name = ?
+                and b.user_code = ?;
+
+    </entry>
+</properties>
