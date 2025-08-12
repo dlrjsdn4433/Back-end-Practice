@@ -41,39 +41,54 @@
             where b.menu_name = ?;
     </entry>
     <entry key="order">
-        insert into order
+        insert into orders
+        (order_code, delivery_time,user_code,menu_name,menu_amount,store_code,total_price)
         values(
         null,
-        (select cooking_time from menu where menu_name = ?),
+        ?+(select cooking_time from menu where menu_name = ? and store_code =(select store_code from store where store_name = ?)),
         ?,
         ?,
         ?,
-        (select store_code from store where store_name = ?));
+        (select store_code from store where store_name = ?),
+        (select menu_price from menu where menu_name = ? and store_code = (select store_code from store where store_name = ?))*?+?);
     </entry>
     <entry key="modifyOrder">
-        update order
+        update orders
             set menu_amount = ?
             where order_code = ?
               and user_code = ?;
     </entry>
     <entry key="deleteOrder">
-        delete from order
+        delete from orders
             where order_code = ?
               and user_code = ?;
     </entry>
     <entry key="viewMyOrder">
         select
                 *
-                from order
+                from orders
                 where user_code = ?;
+    </entry>
+    <entry key="viewMyOrderWithoutReview">
+        select
+                *
+                from orders
+                where user_code = ?
+                  and review_status = 'N';
     </entry>
     <entry key="registReview">
         insert into review
         values(
         ?,
         ?,
-        (select store_code from order where order_code = ?),
-        ?.);
+        (select store_code from orders where order_code = ?),
+        ?);
+    </entry>
+    <entry key="updateOrders">
+        update orders
+        set review_status = 'y'
+        where order_code = ?
+        and user_code = ?;
     </entry>
     <entry key="modifyReview">
         update review

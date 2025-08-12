@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-        <entry key="viewMenuOfStore">
-                select
-                        b.menu_name,
-                        b.menu_price
-                        from 매장 a
-                        join 메뉴 b on a.store_code = b.store_code
-                        where store_name = ?;
-        </entry>
-        <entry key="userDistinctionByName">
-                select
-                        distinction
-                        from 사용자
-                        where user_name = ?;
-        </entry>
+<!--        <entry key="viewMenuOfStore">-->
+<!--                select-->
+<!--                        b.menu_name,-->
+<!--                        b.menu_price-->
+<!--                        from 매장 a-->
+<!--                        join 메뉴 b on a.store_code = b.store_code-->
+<!--                        where store_name = ?;-->
+<!--        </entry>-->
+<!--        <entry key="userDistinctionByName">-->
+<!--                select-->
+<!--                        distinction-->
+<!--                        from 사용자-->
+<!--                        where user_name = ?;-->
+<!--        </entry>-->
         <entry key="userRegistration">
-                insert into 사용자
+                insert into users
                 (user_code, user_name, phone, user_address, distinction,user_id,user_pwd)
                 values
                 (null,?,?,?,?,?,?);
         </entry>
-        <!--전체 매장 조회
-        매장 이름 , 사장 이름 출력-->
-        <entry key="viewAllStore">
-                select
-                        a.store_name,
-                        b.user_name
-                from 매장 a
-                join 사용자 b on a.user_code =  b.user_code;
-        </entry>
-        <!-- 특정 메뉴 조회해서
-        어떤 매장인지 가격은 얼마인지 조회-->
-        <entry key="viewMenu">
-                select
-                        b.store_name,
-                        a.menu_price
-                        from 메뉴 a
-                        join 매장 b on a.store_code = b.store_code
-                        where menu_name = ?;
-        </entry>
-        <!--특정 메뉴 삭제하기-->
-        <entry key="deleteMenu">
-                delete from 메뉴 where menu_name = ?;
-        </entry>
+<!--        &lt;!&ndash;전체 매장 조회-->
+<!--        매장 이름 , 사장 이름 출력&ndash;&gt;-->
+<!--        <entry key="viewAllStore">-->
+<!--                select-->
+<!--                        a.store_name,-->
+<!--                        b.user_name-->
+<!--                from 매장 a-->
+<!--                join 사용자 b on a.user_code =  b.user_code;-->
+<!--        </entry>-->
+<!--        &lt;!&ndash; 특정 메뉴 조회해서-->
+<!--        어떤 매장인지 가격은 얼마인지 조회&ndash;&gt;-->
+<!--        <entry key="viewMenu">-->
+<!--                select-->
+<!--                        b.store_name,-->
+<!--                        a.menu_price-->
+<!--                        from 메뉴 a-->
+<!--                        join 매장 b on a.store_code = b.store_code-->
+<!--                        where menu_name = ?;-->
+<!--        </entry>-->
+<!--        &lt;!&ndash;특정 메뉴 삭제하기&ndash;&gt;-->
+<!--        <entry key="deleteMenu">-->
+<!--                delete from 메뉴 where menu_name = ?;-->
+<!--        </entry>-->
         <!--로그인-->
         <entry key="login">
                 select
                         user_code
-                        from user
+                        from users
                         where user_id = ?
                           and user_pwd = ?;
         </entry>
@@ -57,7 +57,7 @@
                 select
                 distinction,
                 user_name
-                from user
+                from users
                 where user_code = ?;
         </entry>
 </properties>

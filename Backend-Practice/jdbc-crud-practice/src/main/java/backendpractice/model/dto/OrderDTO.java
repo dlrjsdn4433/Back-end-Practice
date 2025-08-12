@@ -8,6 +8,8 @@ public class OrderDTO {
     private String menuName;
     private int amount;
     private int storeCode;
+    private String reviewStatus;
+    private int totalPrice;
 
     public OrderDTO (){}
 
@@ -68,15 +70,33 @@ public class OrderDTO {
         this.storeCode = storeCode;
     }
 
+    public String getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(String reviewStatus) {
+        this.reviewStatus = reviewStatus;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public String toString() {
-        return "OrderDTO{" +
-                "orderCode=" + orderCode +
-                ", time=" + time +
-                ", userCode=" + userCode +
-                ", menuName=" + menuName +
-                ", amount=" + amount +
-                ", storeCode=" + storeCode +
-                '}';
+        return //"주문 내역{" +
+                "주문 번호 = " + orderCode +
+                ", 배달 시간 = " + time +
+//                ", 주문자 번호 = " + userCode +
+                ", 메뉴명 = '" + menuName + '\'' +
+                ", 메뉴 수량 = " + amount +
+                ", 매장 코드 = " + storeCode +
+//                ", 리뷰 작성 여부 = " + reviewStatus +
+                ", 총 가격 = " + totalPrice;
+//                + '}';
     }
 }

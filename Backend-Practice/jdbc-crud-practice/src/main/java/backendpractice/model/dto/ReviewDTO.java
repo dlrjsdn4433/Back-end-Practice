@@ -8,7 +8,8 @@ public class ReviewDTO {
     private int storeCode;
     private String storeName;
 
-    public ReviewDTO(){}
+    public ReviewDTO() {
+    }
 
     public ReviewDTO(int orderCode, int userCode, String review, int storeCode) {
         this.orderCode = orderCode;
@@ -60,9 +61,28 @@ public class ReviewDTO {
     @Override
     public String toString() {
         return "ReviewDTO{" +
-                "storeName='" + storeName + '\'' +
+                "orderCode=" + orderCode +
                 ", userCode=" + userCode +
                 ", review='" + review + '\'' +
+                ", storeCode=" + storeCode +
+                '}';
+    }
+
+    public String showReviewToCustomers(){
+        return "ReviewDTO{" +
+                "주문 번호 =" + orderCode +
+//                ", 주문자 번호 =" + userCode +
+                ", 리뷰 내용 ='" + review + '\'' +
+                ", 매장 코드 =" + storeCode +
+                '}';
+    }
+
+    public String showReviewsToOwners(){
+        return  "ReviewDTO{" +
+                "주문 번호 =" + orderCode +
+                ", 매장명 =" + storeName +
+                ", 리뷰 내용 ='" + review + '\'' +
+                ", 주문자 번호 =" + userCode +
                 '}';
     }
 }

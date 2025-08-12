@@ -17,7 +17,7 @@ public class OwnerDAO extends UserDAO{
 
     Properties prop = new Properties();
     UserDAO user = new UserDAO();
-    private int userCode=0;
+    private int userCode;
     Scanner sc = new Scanner(System.in);
 
     public OwnerDAO (){
@@ -47,7 +47,6 @@ public class OwnerDAO extends UserDAO{
 
     // 1. 매장 등록
     public void reigstStore(Connection con){
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String query = prop.getProperty("registStore");
@@ -82,7 +81,6 @@ public class OwnerDAO extends UserDAO{
 
     // 2. 매장명 수정
     public void modifyStoreName(Connection con){
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String qeury = prop.getProperty("modifyStoreName");
@@ -113,7 +111,6 @@ public class OwnerDAO extends UserDAO{
 
     // 매장 삭제
     public void deleteStore(Connection con){
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String query = prop.getProperty("deleteStore");
@@ -141,7 +138,6 @@ public class OwnerDAO extends UserDAO{
 
     // 4. 메뉴 등록
     public void registMenu(Connection con){
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String query = prop.getProperty("registMenu");
@@ -153,8 +149,10 @@ public class OwnerDAO extends UserDAO{
         String menuName = sc.nextLine();
         System.out.println("등록하실 메뉴의 가격을 입력해주세요 : ");
         int menuPrice = sc.nextInt();
+        sc.nextLine();
         System.out.println("등록하실 메뉴의 조리시간을 입력해주세요 : ");
         int cookingTime = sc.nextInt();
+        sc.nextLine();
 
         try {
             pstmt = con.prepareStatement(query);
@@ -177,7 +175,6 @@ public class OwnerDAO extends UserDAO{
     }
 
     public void modifyMenuName(Connection con) {
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String query = prop.getProperty("modifyMenuName");
@@ -210,7 +207,6 @@ public class OwnerDAO extends UserDAO{
     }
 
     public void modifyMenuPrice(Connection con) {
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String query = prop.getProperty("modifyMenuPrice");
@@ -222,6 +218,7 @@ public class OwnerDAO extends UserDAO{
         String menuName = sc.nextLine();
         System.out.println("메뉴의 변경 후 가격을 입력해주세요 : ");
         int menuPrice = sc.nextInt();
+        sc.nextLine();
 
         try {
             pstmt = con.prepareStatement(query);
@@ -243,7 +240,6 @@ public class OwnerDAO extends UserDAO{
     }
 
     public void deleteMenu(Connection con) {
-        sc.nextLine();
         PreparedStatement pstmt = null;
         int result = 0;
         String query = prop.getProperty("deleteMenu");
@@ -293,7 +289,7 @@ public class OwnerDAO extends UserDAO{
                 review.setOrderCode(rset.getInt("order_code"));
                 review.setStoreName(rset.getString("store_name"));
 
-                System.out.println("review = " + review);
+                System.out.println("review = " + review.showReviewsToOwners());
 
             }
         } catch (SQLException e) {
@@ -304,80 +300,80 @@ public class OwnerDAO extends UserDAO{
         }
     }
 
-    public void owner(Connection con){
-
-        while(true){
-            System.out.println("");
-            System.out.println("=============사장 메뉴===============");
-            System.out.println("");
-            System.out.println("1. 매장 관리");
-            System.out.println("2. 메뉴 관리");
-            System.out.println("3. 리뷰 조회");
-            System.out.println("0. 로그아웃");
-            System.out.println("");
-            System.out.println("메뉴 선택 : ");
-            int choice = sc.nextInt();
-            sc.nextLine();
-
-            switch(choice){
-                case 1 :
-                    while(true){
-                        System.out.println("");
-                        System.out.println("=============매장 관리=============");
-                        System.out.println("");
-                        System.out.println("1. 매장 추가");
-                        System.out.println("2. 매장명 수정");
-                        System.out.println("3. 매장 삭제");
-                        System.out.println("0. 뒤로 가기");
-                        System.out.println("");
-                        System.out.println("메뉴 선택 : ");
-                        int num = sc.nextInt();
-
-                        switch(num){
-                            case 1 : reigstStore(con);break;
-                            case 2 : modifyStoreName(con);break;
-                            case 3 : deleteStore(con);break;
-                            case 0 : break;
-                        }
-                        if(num==0){
-                            break;
-                        }
-                    }
-                    break;
-                case 2 :
-                    while(true){
-                        System.out.println("");
-                        System.out.println("=============메뉴 관리=============");
-                        System.out.println("");
-                        System.out.println("1. 메뉴 추가");
-                        System.out.println("2. 메뉴명 수정");
-                        System.out.println("3. 메뉴가격 수정");
-                        System.out.println("4. 메뉴 삭제");
-                        System.out.println("0. 뒤로 가기");
-                        System.out.println("");
-                        System.out.println("메뉴 선택 : ");
-                        int num = sc.nextInt();
-
-                        switch(num){
-                            case 1 : registMenu(con);break;
-                            case 2 : modifyMenuName(con);break;
-                            case 3 : modifyMenuPrice(con);break;
-                            case 4 : deleteMenu(con); break;
-                            case 0 : break;
-                        }
-                        if(num==0){
-                            break;
-                        }
-                    }
-                    break;
-                case 3 : viewReview(con); break;
-                case 0 : user.logout(con); break;
-            }
-            if(choice ==0){
-                break;
-            }
-        }
-    }
+//    public void owner(Connection con){
+//
+//        while(true){
+//            System.out.println("");
+//            System.out.println("=============사장 메뉴===============");
+//            System.out.println("");
+//            System.out.println("1. 매장 관리");
+//            System.out.println("2. 메뉴 관리");
+//            System.out.println("3. 리뷰 조회");
+//            System.out.println("0. 로그아웃");
+//            System.out.println("");
+//            System.out.println("메뉴 선택 : ");
+//            int choice = sc.nextInt();
+//            sc.nextLine();
+//
+//            switch(choice){
+//                case 1 :
+//                    while(true){
+//                        System.out.println("");
+//                        System.out.println("=============매장 관리=============");
+//                        System.out.println("");
+//                        System.out.println("1. 매장 추가");
+//                        System.out.println("2. 매장명 수정");
+//                        System.out.println("3. 매장 삭제");
+//                        System.out.println("0. 뒤로 가기");
+//                        System.out.println("");
+//                        System.out.println("메뉴 선택 : ");
+//                        int num = sc.nextInt();
+//
+//                        switch(num){
+//                            case 1 : reigstStore(con);break;
+//                            case 2 : modifyStoreName(con);break;
+//                            case 3 : deleteStore(con);break;
+//                            case 0 : break;
+//                        }
+//                        if(num==0){
+//                            break;
+//                        }
+//                    }
+//                    break;
+//                case 2 :
+//                    while(true){
+//                        System.out.println("");
+//                        System.out.println("=============메뉴 관리=============");
+//                        System.out.println("");
+//                        System.out.println("1. 메뉴 추가");
+//                        System.out.println("2. 메뉴명 수정");
+//                        System.out.println("3. 메뉴가격 수정");
+//                        System.out.println("4. 메뉴 삭제");
+//                        System.out.println("0. 뒤로 가기");
+//                        System.out.println("");
+//                        System.out.println("메뉴 선택 : ");
+//                        int num = sc.nextInt();
+//
+//                        switch(num){
+//                            case 1 : registMenu(con);break;
+//                            case 2 : modifyMenuName(con);break;
+//                            case 3 : modifyMenuPrice(con);break;
+//                            case 4 : deleteMenu(con); break;
+//                            case 0 : break;
+//                        }
+//                        if(num==0){
+//                            break;
+//                        }
+//                    }
+//                    break;
+//                case 3 : viewReview(con); break;
+//                case 0 : user.logout(con); break;
+//            }
+//            if(choice ==0){
+//                break;
+//            }
+//        }
+//    }
 }
 
 

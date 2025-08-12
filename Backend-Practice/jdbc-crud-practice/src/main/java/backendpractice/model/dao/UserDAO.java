@@ -46,7 +46,7 @@ public class UserDAO {
         String phone = sc.nextLine();
         System.out.print("사용자 주소 : ");
         String address = sc.nextLine();
-        System.out.print("사용자 구분 : ");
+        System.out.print("사용자 구분 ( 사장 or 주문자 ) : ");
         String dist = sc.nextLine();
         System.out.print("아이디 : ");
         String id = sc.nextLine();

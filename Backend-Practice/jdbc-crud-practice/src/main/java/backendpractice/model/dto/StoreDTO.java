@@ -41,9 +41,9 @@ public class StoreDTO {
     @Override
     public String toString() {
         return "StoreDTO{" +
-                "name='" + name + '\'' +
-                ", userCode=" + userCode +
-                ", storeCode=" + storeCode +
+                "매장명 = '" + name + '\'' +
+                ", 사장 코드 =" + userCode +
+                ", 매장 코드 =" + storeCode +
                 '}';
     }
 }
