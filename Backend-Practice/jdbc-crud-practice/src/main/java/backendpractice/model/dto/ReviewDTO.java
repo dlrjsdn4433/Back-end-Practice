@@ -82,7 +82,7 @@ public class ReviewDTO {
                 "주문 번호 =" + orderCode +
                 ", 매장명 =" + storeName +
                 ", 리뷰 내용 ='" + review + '\'' +
-                ", 주문자 번호 =" + userCode +
+//                ", 주문자 번호 =" + userCode +
                 '}';
     }
 }

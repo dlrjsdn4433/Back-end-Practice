@@ -288,6 +288,7 @@ public class OwnerDAO extends UserDAO{
                 review.setReview(rset.getString("review"));
                 review.setOrderCode(rset.getInt("order_code"));
                 review.setStoreName(rset.getString("store_name"));
+//                review.setUserCode(rset.getInt("user_code"));
 
                 System.out.println("review = " + review.showReviewsToOwners());
 
