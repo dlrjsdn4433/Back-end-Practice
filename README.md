@@ -5,4 +5,4 @@
 <h2>2. 논리 모델</h2>
 <img width="732" height="581" alt="Image" src="https://github.com/user-attachments/assets/5e2a814d-ce67-4c21-8303-a8288da95275" />
 <h2>3. 물리 모델</h2>
-
+<img width="836" height="604" alt="Image" src="https://github.com/user-attachments/assets/cd0ee6a3-8a9f-4e6c-a11e-5e22ca675978" />
